@@ -3,15 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Pybo site</title>
-    {% if question_list %}
-        <ul>
-        {% for question in question_list %}
-            <li><a href="{% url 'pybo:detail' question.id %}">{{question.subject}}</a> </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>질문이 없습니다.</p>
-    {% endif %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <div class="contaiiner my-3">
+        <table class="table">
+            <thead>
+            <tr class="thead-dark">
+                <th>number</th>
+                <th>title</th>
+                <th>upload time</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if question_list %}
+            {% for question in question_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <a href="{% url 'pybo:detail' question.id %}">{{ question.subject}}</a>
+                </td>
+                <td>{{ question.create_date }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="3">no Questions.</td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
 
 </head>
 <body>
