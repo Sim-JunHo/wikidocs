@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,8 @@
     <title>Pybo site</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-    <div class="contaiiner my-3">
+    {% block content %}
+    <div class="container my-3">
         <table class="table">
             <thead>
             <tr class="thead-dark">
@@ -32,7 +34,9 @@
             {% endif %}
             </tbody>
         </table>
+        <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">Make Question</a>
     </div>
+    {% endblock %}
 
 </head>
 <body>
